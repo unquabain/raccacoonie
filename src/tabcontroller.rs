@@ -24,6 +24,11 @@ impl TabController {
         self.current
     }
 
+    #[inline]
+    pub fn set_current_index(&mut self, idx: usize) {
+        self.current = idx.min(self.size-1);
+    }
+
     pub fn next(&mut self) -> usize {
         self.current += 1;
         if self.current >= self.size {

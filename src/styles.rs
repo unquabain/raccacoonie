@@ -29,6 +29,22 @@ pub enum FocusState {
     Focus,
 }
 
+impl From<bool> for FocusState {
+    fn from(b: bool) -> Self {
+        if b {
+            Self::Focus
+        } else {
+            Self::Blur
+        }
+    }
+}
+
+impl From<FocusState> for bool {
+    fn from(fs: FocusState) -> Self {
+        fs == FocusState::Focus
+    }
+}
+
 impl Default for Styles {
     fn default() -> Self {
         Self {

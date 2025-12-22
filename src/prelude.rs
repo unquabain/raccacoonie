@@ -11,6 +11,10 @@ pub use crate::{
     log_viewer::{LogViewer, init_logging},
     popup::Popup,
     tabcontroller::TabController,
+    styles::{
+        STYLES,
+        FocusState,
+    },
 };
 pub use ratatui::{
     Frame,
