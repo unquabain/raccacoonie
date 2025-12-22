@@ -194,7 +194,7 @@ impl Model for Form {
             button_areas[0],
             button_areas[1],
         ];
-        for ( ( idx, focused ), area ) in self.tab_controller.iter().zip(control_areas.into_iter()) {
+        for ( idx, area, focused ) in self.tab_controller.iter_with_areas(control_areas) {
             macro_rules! draw_model {
                 ( $( ( $idx:literal => $control:ident ) )+ ) => {
                     {

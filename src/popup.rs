@@ -23,7 +23,7 @@ impl Model for Popup {
         }
     }
     fn view(&mut self, frame: &mut Frame, area: Rect) -> Result<()> {
-        frame.render_widget(Clear, area);
+        frame.render_widget(Paragraph::new("").block(STYLES.blur.block.clone().borders(Borders::NONE)), area);
         let rows: [Rect; 3] = Layout::vertical([
             Constraint::Min(0),
             Constraint::Ratio(3,5),

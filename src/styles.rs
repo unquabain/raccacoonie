@@ -105,6 +105,14 @@ impl Styles {
             .highlight_spacing(style.highlight_spacing.clone());
         frame.render_stateful_widget(list, area, state);
     }
+
+    #[inline]
+    pub fn style_for(&self, focus: FocusState) -> Style {
+        match focus {
+            FocusState::Blur => &self.blur,
+            FocusState::Focus => &self.focus,
+        }.clone()
+    }
 }
 
 lazy_static! {

@@ -69,9 +69,12 @@ impl TabController {
         }
     }
 
-    pub fn iter(&mut self) -> impl std::iter::Iterator<Item=(usize, FocusState)> {
+    pub fn iter(&self) -> impl std::iter::Iterator<Item=(usize, FocusState)> {
         let current = self.current;
         (0..self.size).into_iter().map(move |i| (i, if i==current { FocusState::Focus } else { FocusState::Blur }))
+    }
+    pub fn iter_with_areas(&self, areas: impl IntoIterator<Item=Rect>) -> impl std::iter::Iterator<Item=(usize, Rect, FocusState)> {
+        self.iter().zip(areas).map(move |((i, fs), area)| (i, area, fs))
     }
 }
 
