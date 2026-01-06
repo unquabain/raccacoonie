@@ -41,11 +41,11 @@ async fn event_loop(tx: mpsc::Sender<Message>, quit: QuitSignal) {
             Ok(Event::Key(key_event)) => {
                 // Ctrl-C to quit
                 if key_event.modifiers == KeyModifiers::CONTROL && key_event.code == KeyCode::Char('c') {
-                    _ = tx.send(Message::Quit).await;
+                    let _ = tx.send(Message::Quit).await;
                     return
                 } else {
                     // Send other key events to the main loop
-                    _ = tx.send(Message::KeyPress(key_event)).await
+                    let _ = tx.send(Message::KeyPress(key_event)).await;
                 };
             }
             // Handle terminal resize events
@@ -148,7 +148,7 @@ impl<'m, M: Model> MainLooper<'m, M> {
         Ok(BreakDepth::DrawModel)
     }
     fn finalize(mut self) {
-        _ = self.quit.set(());
+        let _ = self.quit.set(());
         ratatui::restore();
         self.rx.close();
         if !self.keyloop.is_finished() {

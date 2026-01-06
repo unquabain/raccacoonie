@@ -33,7 +33,7 @@ impl Default for Error {
     }
 }
 
-impl std::convert::Into<std::io::Error> for Error {
+impl Into<std::io::Error> for Error {
     fn into(self) -> std::io::Error {
         std::io::Error::new(std::io::ErrorKind::Other, self.to_string())
     }

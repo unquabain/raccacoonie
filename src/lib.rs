@@ -29,9 +29,7 @@ pub trait Model {
         None
     }
 
-    fn set_focus(&mut self, _focused: styles::FocusState) {
-        ()
-    }
+    fn set_focus(&mut self, _focused: styles::FocusState) { }
 }
 
 pub trait Runner : Model + Sized {

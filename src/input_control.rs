@@ -71,11 +71,11 @@ impl Model for InputControl {
             });
         frame.render_widget(par, area);
         if self.focus == FocusState::Focus {
-            let cursor_x = area.x + self.input.visual_cursor().max(scroll as usize) as u16 + scroll + 1;
+            let cursor_x = area.x + self.input.visual_cursor().max(scroll as usize) as u16 - scroll + 1;
             let cursor_y = area.y + 1;
             frame.set_cursor_position((cursor_x, cursor_y));
         }
-        
+
         Ok(())
     }
 }

@@ -82,7 +82,7 @@ impl Message {
     pub fn or(self, next: Message) -> Message {
         match self {
             Message::Noop => next,
-            _ => next
+            _ => self
         }
     }
     pub fn or_else(self, next: impl FnOnce() -> Message) -> Message {

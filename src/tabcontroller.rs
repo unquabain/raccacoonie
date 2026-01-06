@@ -30,6 +30,9 @@ impl TabController {
     }
 
     pub fn next(&mut self) -> usize {
+        if self.size == 0 {
+            return 0;
+        }
         self.current += 1;
         if self.current >= self.size {
             self.current = 0;
@@ -38,6 +41,9 @@ impl TabController {
     }
 
     pub fn previous(&mut self) -> usize {
+        if self.size == 0 {
+            return 0;
+        }
         if self.current == 0 {
             self.current = self.size;
         }
@@ -57,12 +63,12 @@ impl TabController {
         match *msg {
             Message::KeyPress(KeyEvent{code: KeyCode::Tab, ..}) => {
                 self.next();
-                log::info!("in tab_contoller::update with {msg:?}; current index: {}", self.current);
+                log::info!("in tab_controller::update with {msg:?}; current index: {}", self.current);
                 Message::Redraw
             }
             Message::KeyPress(KeyEvent{code: KeyCode::BackTab, ..}) => {
                 self.previous();
-                log::info!("in tab_contoller::update with {msg:?}; current index: {}", self.current);
+                log::info!("in tab_controller::update with {msg:?}; current index: {}", self.current);
                 Message::Redraw
             }
             _ => Message::Noop
